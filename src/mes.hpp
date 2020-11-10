@@ -21,23 +21,42 @@ class myEpoll
     epoll_event eventList[Max + 1];
 
 public:
-    myEpoll(int fd, void(*accept_Coll)(void*), void(*trans_Coll)(void*))
+    myEpoll(int fd, void(*accept_Coll)(void*))
     {
         tree = epoll_create(Max);
         trans_fd = fd;
         this->accept_Coll = accept_Coll;
-        this->trans_Coll = trans_Coll;
+        trans_Event = new epoll_event;
+        trans_Event->events = EPOLLIN;
+        trans_Event->data.fd = fd;
+        trans_Event->data.ptr = (void*) trans_Coll;
+        epoll_ctl(tree, EPOLL_CTL_ADD, fd, trans_Event);
+    }
+    void trans_Coll(void* temp)
+    {
+        printf("one link\n");
+        int message_fd = accept(trans_fd, nullptr, nullptr);
+        accept_Event = new epoll_event;
+        accept_Event->events = EPOLLIN;
+        accept_Event->data.fd = message_fd;
+        accept_Event->data.ptr = (void*) accept_Coll;
     }
     //*epoll反应堆连接/传输初始化设置回调函数
-    int wait(int time = -1)
+    void wait(int time = -1)
     {
-        int temp = 0;
-        int n = epoll_wait(tree, eventList, Max, time);
-        if (n <= 0)
+        while (1)
         {
-            temp = n;
+            int n = epoll_wait(tree, eventList, Max, time);
+            if (n <= 0)
+            {
+                printf("epoll_wait err!");
+            }
+            for (int i = 0;i < n;i++)
+            {
+                auto func = (void(*)(void*))eventList[i].data.ptr;
+                func(nullptr);
+            }
         }
-        return temp;
 
     }
     ~myEpoll()
