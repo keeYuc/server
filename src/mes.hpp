@@ -25,8 +25,8 @@ public:
     {
         tree = epoll_create(Max);
         trans_fd = fd;
-        void(*accept_Coll)(void*) = accept_Coll;
-        void(*trans_Coll)(void*) = trans_Coll;
+        this->accept_Coll = accept_Coll;
+        this->trans_Coll = trans_Coll;
     }
     //*epoll反应堆连接/传输初始化设置回调函数
     int wait(int time = -1)
