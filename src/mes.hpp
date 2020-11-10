@@ -21,17 +21,14 @@ class myEpoll
     epoll_event eventList[Max + 1];
 
 public:
-    myEpoll()
+    myEpoll(int fd, void(*accept_Coll)(void*), void(*trans_Coll)(void*))
     {
         tree = epoll_create(Max);
-    }
-    //*epoll反应堆连接/传输初始化设置回调函数
-    void init(int fd, void(*accept_Coll)(void*), void(*trans_Coll)(void*))
-    {
         trans_fd = fd;
         void(*accept_Coll)(void*) = accept_Coll;
         void(*trans_Coll)(void*) = trans_Coll;
     }
+    //*epoll反应堆连接/传输初始化设置回调函数
     int wait(int time = -1)
     {
         int temp = 0;
