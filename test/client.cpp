@@ -22,7 +22,7 @@ int main()
     std::string string_Hand;//*文件头
     hand.SerializeToString(&string_Hand);
     int size_hand = string_Hand.size();
-    std::cout <<"proto文件字节数"<<size_hand << std::endl;
+    std::cout << "proto文件字节数" << size_hand << std::endl;
     char hand1[size_hand];//*proto 数据
     memcpy(hand1, string_Hand.data(), size_hand);                 //*pro文件里面有真实文件长度               
     //printf("%d\n", size_hand);                      //*pro文件长度/pro文件/真实文件                       
@@ -30,8 +30,9 @@ int main()
     sprintf(protostring, "%d", size_hand);
     write(fd, protostring, 8);//!写xxxx
     write(fd, hand1, size_hand);//!写ppppp
+    //sleep(1);
     // //!写真实文件
-    int max = 1024 * 512;
+    int max = 1024;
     int sum = 0;        //总传送数
     int xxx = size;   //剩余字符数
     printf("sum[%d]---xxx[%d]\n", sum, xxx);
@@ -42,9 +43,10 @@ int main()
         char buff[max];
         bzero(buff, max);
         file.read(buff, max);
-        file.write(buff, max);
+        write(fd, buff, max);
         sum += max;
         xxx -= max;
+        //sleep(1);
         printf("----总数[%d]----sum[%d]-----剩余[%d]\n", size, sum, xxx);
 
 
@@ -53,7 +55,7 @@ int main()
     char buff[xxx];
     bzero(buff, xxx);
     file.read(buff, xxx);
-    file.write(buff, xxx);
+    write(fd, buff, xxx);
     sum += xxx;
     xxx -= xxx;
     printf("----总数[%d]----发送[%d]-----剩余[%d]\n", size, sum, xxx);
