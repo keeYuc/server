@@ -54,7 +54,11 @@ int main()
                 int have_read = 0;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 int read_max = 1024 * 1024;
+=======
+                int read_max = 1024 * 512;
+>>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
 =======
                 int read_max = 1024 * 512;
 >>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b

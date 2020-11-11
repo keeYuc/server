@@ -11,7 +11,11 @@ int main()
     inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr.s_addr);
     connect(fd, (sockaddr*) &addr, sizeof(addr));
 <<<<<<< HEAD
+<<<<<<< HEAD
     std::fstream file("./ff.png", std::ios::in | std::ios::binary);//!------------
+=======
+    std::fstream file("./abc.jpg", std::ios::in | std::ios::binary);
+>>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
 =======
     std::fstream file("./abc.jpg", std::ios::in | std::ios::binary);
 >>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
@@ -22,7 +26,11 @@ int main()
     // //*-------------------------------------------
     hand hand;
 <<<<<<< HEAD
+<<<<<<< HEAD
     hand.set_name("ff.png");//!--------------------------------------------
+=======
+    hand.set_name("abc.jpg");
+>>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
 =======
     hand.set_name("abc.jpg");
 >>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
@@ -42,7 +50,11 @@ int main()
     // //!写真实文件
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     int max = 1024*1024;
+=======
+    int max = 1024;
+>>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
 =======
     int max = 1024;
 >>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
