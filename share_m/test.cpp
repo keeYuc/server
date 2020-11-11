@@ -1,21 +1,25 @@
 #include<sys/ipc.h>
 #include<sys/shm.h>
 #include<iostream>
+#include<string.h>
 
 
 
 int main()
 {
+
+    key_t key = ftok("/home/keeyu/mycode/server/", 88);
+    // std::cout << key << std::endl;
+    int mid = shmget(key, 1024, IPC_CREAT | 0664);
+    std::cout << mid << std::endl;
+    auto ptr = shmat(mid, nullptr, 0);
+    memcpy(ptr, "abc", 3);
+
+
     getchar();
-    key_t key = ftok("/home/keeyu/mycode/server/share_m/", 88);
-    if (shmget(key, 1024 * 4, IPC_CREAT) == -1)
-    {
-        std::cout << "shmget err!\n";
-    }
-    void* ptr = shmat(key, nullptr, 0);
-    if (*((int*) (ptr)) == -1)
-    {
-        std::cout << "shmat err!\n";
-    }
-    getchar();
+    shmid_ds* buf;
+    shmctl(mid, IPC_STAT, buf);
+    shmdt(ptr);
+    std::cout << buf->shm_nattch;
+    shmctl(mid, IPC_RMID, nullptr);
 }
