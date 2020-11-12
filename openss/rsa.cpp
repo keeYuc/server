@@ -42,7 +42,7 @@ int main()
     RSA_sign(NID_md5, buff, sizeof(buff), buff1, &a123, pri_key);
     int n1 = RSA_verify(NID_md5, buff, sizeof(buff), buff1, a123, pub_key);
     std::cout << "n1:" << n1 << std::endl;
-    printf("解密内容是[%s]\n", buff2);
+    //printf("解密内容是[%s]\n", buff2);
     RSA_free(rsa);
 
     return 0;
