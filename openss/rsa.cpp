@@ -14,6 +14,7 @@ int main()
     auto rsa = RSA_new();
     auto num = BN_new();
     BN_set_word(num, 12345);
+    BN_free(num);
     //printf("s");
     char unsigned buff[] = "accdefg123";
     char  unsigned buff1[128];
@@ -24,6 +25,7 @@ int main()
     auto pub_key = RSAPublicKey_dup(rsa);
     auto pri_key = RSAPrivateKey_dup(rsa);
     printf("加密内容是[%s]\n", buff);
+    //!------------------------------------------------------------------------------
     // int n = RSA_public_encrypt(sizeof(buff), buff, buff1, pri_key, RSA_PKCS1_PADDING);
     // int n1 = RSA_private_decrypt(sizeof(buff), buff1, buff2, pub_key, RSA_PKCS1_PADDING);
     //std::cout << "----" << n << "---" << n1 << "-------" << std::endl;
@@ -38,6 +40,7 @@ int main()
     // fclose(fd1);
     // RSA_public_encrypt(11, buff, buff1, pub_key, RSA_PKCS1_PADDING);
     // RSA_private_decrypt(11, buff1, buff2, pri_key, RSA_PKCS1_PADDING);
+    //!-----------------------------------------------------------------------------------
     unsigned int a123;
     RSA_sign(NID_md5, buff, sizeof(buff), buff1, &a123, pri_key);
     int n1 = RSA_verify(NID_md5, buff, sizeof(buff), buff1, a123, pub_key);
