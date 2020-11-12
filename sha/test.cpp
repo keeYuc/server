@@ -1,7 +1,7 @@
 #include<string.h>
 #include<openssl/sha.h>
 #include<iostream>
-#include"../base64/base64.hpp"
+#include"../cpp-base64/base64.h"
 
 
 int main()
@@ -9,9 +9,8 @@ int main()
     char buff[64];
     char a[4] = "abc";
     SHA256((unsigned char*) a, 4, (unsigned char*) buff);
-    Base64Encrypt a;
-    
-
-    printf("%s\n", buff);
+    auto str=base64_encode(buff);
+    //auto str1=base64_decode(str);
+    printf("%s\n", str.data());
     return 0;
 }
