@@ -10,30 +10,17 @@ int main()
     addr.sin_port = htons(5555);
     inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr.s_addr);
     connect(fd, (sockaddr*) &addr, sizeof(addr));
-<<<<<<< HEAD
-<<<<<<< HEAD
-    std::fstream file("./ff.png", std::ios::in | std::ios::binary);//!------------
-=======
-    std::fstream file("./abc.jpg", std::ios::in | std::ios::binary);
->>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
-=======
-    std::fstream file("./abc.jpg", std::ios::in | std::ios::binary);
->>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
+
+    std::fstream file("./abc.jpg", std::ios::in | std::ios::binary);//!------------
+
     file.seekg(0, std::ios::end);
     int size = file.tellg();
     std::cout << size << std::endl;
     file.seekg(0, std::ios::beg);
     // //*-------------------------------------------
     hand hand;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     hand.set_name("ff.png");//!--------------------------------------------
-=======
-    hand.set_name("abc.jpg");
->>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
-=======
-    hand.set_name("abc.jpg");
->>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
     hand.set_size(size);
     std::string string_Hand;//*文件头
     hand.SerializeToString(&string_Hand);
@@ -48,21 +35,13 @@ int main()
     write(fd, hand1, size_hand);//!写ppppp
     //sleep(1);
     // //!写真实文件
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     int max = 1024*1024;
-=======
-    int max = 1024;
->>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
-=======
-    int max = 1024;
->>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
-=======
-    int max = 1024;
->>>>>>> d5468c7b703f96d4999820f1f85d5f085c2c965b
+
     int sum = 0;        //总传送数
-    int xxx = size;   //剩余字符数
+    int xxx = size;
+    int size_n;
+    //剩余字符数
     printf("sum[%d]---xxx[%d]\n", sum, xxx);
 
     while (max < xxx)
@@ -75,7 +54,7 @@ int main()
         sum += max;
         xxx -= max;
         //sleep(1);
-        printf("----总数[%d]----sum[%d]-----剩余[%d]\n", size, sum, xxx);
+        printf("----原始总字符总数[%d]--编码后字符总数[%d]--sum[%d]-----剩余[%d]\n", size,size_n, sum, xxx);
 
 
     }
@@ -86,5 +65,6 @@ int main()
     write(fd, buff, xxx);
     sum += xxx;
     xxx -= xxx;
-    printf("----总数[%d]----发送[%d]-----剩余[%d]\n", size, sum, xxx);
+    printf("----原始总字符总数[%d]--编码后字符总数[%d]--sum[%d]-----剩余[%d]\n", size, size_n, sum, xxx);
+
 }
