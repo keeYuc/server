@@ -3,8 +3,7 @@
 
 
 int main(){
-    AES_KEY abc;
-    abc.
+    
     
     
     return 0;
