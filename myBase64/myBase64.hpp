@@ -1,8 +1,8 @@
-//#include<openssl/bio.h>
-
-#include<iostream>
-#include<openssl/pem.h>
+#ifndef MYBASE64_HPP_
+#define MYBASE64_HPP_
 #include<string.h>
+#include<openssl/pem.h>
+
 char* base64Encode(const char* buffer, int length, bool newLine)
 
 {
@@ -49,26 +49,5 @@ char* base64Decode(char* input, int length, bool newLine)
 
     return buffer;
 }
-int main()
-{
-    char fuck[] = "sadasdadad";
-//    auto a= base64Encode(fuck, sizeof(fuck), false);
-//    printf("%s\n", a);
-//    auto b=base64Decode(a, sizeof(a), false);
-//    printf("%s\n", b);
 
-    auto bio = BIO_new(BIO_s_mem());
-    auto b64 = BIO_new(BIO_f_base64());
-    BIO_push(b64, bio);
-    BIO_write(b64, fuck, sizeof(fuck));
-    BIO_flush(b64);
-    BUF_MEM* ptr;
-    BIO_get_mem_ptr(b64, &ptr);
-    char* buf = new char[ptr->length];
-    memcpy(buf, ptr->data, ptr->length);
-    printf("编码之后的数据: %s\n", buf);
-
-    
-
-
-}
+#endif
