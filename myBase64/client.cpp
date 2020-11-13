@@ -1,7 +1,7 @@
 #include"../src/mes.hpp"
 #include"../proto/hand.pb.h"
 #include<fstream>
-
+#include"myBase64.hpp"
 int main()
 {
     int  fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -11,7 +11,7 @@ int main()
     inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr.s_addr);
     connect(fd, (sockaddr*) &addr, sizeof(addr));
 
-    std::fstream file("./abc.jpg", std::ios::in | std::ios::binary);//!------------
+    std::fstream file("./abc.txt", std::ios::in | std::ios::binary);//!------------
 
     file.seekg(0, std::ios::end);
     int size = file.tellg();
@@ -36,25 +36,29 @@ int main()
     //sleep(1);
     // //!写真实文件
 
-    int max = 1024*1024;
+    int max = 9000;
 
     int sum = 0;        //总传送数
     int xxx = size;
-    int size_n;
+    int size_n = 0;
     //剩余字符数
     printf("sum[%d]---xxx[%d]\n", sum, xxx);
-
+    std::fstream file1("./abc1.txt", std::ios::out | std::ios::binary);
     while (max < xxx)
     {
 
         char buff[max];
         bzero(buff, max);
         file.read(buff, max);
+        auto a = base64Encode(buff, sizeof(buff), false);
+        auto b = base64Decode(a, strlen(a), false);
+        file1.write(b, strlen(b) + 1);
+        size_n += strlen(a);
         write(fd, buff, max);
         sum += max;
         xxx -= max;
         //sleep(1);
-        printf("----原始总字符总数[%d]--编码后字符总数[%d]--sum[%d]-----剩余[%d]\n", size,size_n, sum, xxx);
+        printf("----原始总字符总数[%d]--编码后字符总数[%d]--sum[%d]-----剩余[%d]\n", size, size_n, sum, xxx);
 
 
     }
@@ -62,9 +66,14 @@ int main()
     char buff[xxx];
     bzero(buff, xxx);
     file.read(buff, xxx);
+    auto a = base64Encode(buff, sizeof(buff), false);
+    auto b = base64Decode(a, strlen(a), false);
+    file1.write(b, strlen(b) + 1);
+    size_n += strlen(a);
     write(fd, buff, xxx);
     sum += xxx;
     xxx -= xxx;
     printf("----原始总字符总数[%d]--编码后字符总数[%d]--sum[%d]-----剩余[%d]\n", size, size_n, sum, xxx);
-
+    file1.close();
+    file.close();
 }
