@@ -10,16 +10,13 @@ int main()
     addr.sin_port = htons(5555);
     inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr.s_addr);
     connect(fd, (sockaddr*) &addr, sizeof(addr));
-
-    std::fstream file("./abc.jpg", std::ios::in | std::ios::binary);//!------------
-
+    std::fstream file("./abc1.jpg", std::ios::in | std::ios::binary);//!------------
     file.seekg(0, std::ios::end);
     int size = file.tellg();
     std::cout << size << std::endl;
     file.seekg(0, std::ios::beg);
     // //*-------------------------------------------
     hand hand;
-
     hand.set_name("ff.png");//!--------------------------------------------
     hand.set_size(size);
     std::string string_Hand;//*文件头
@@ -35,9 +32,7 @@ int main()
     write(fd, hand1, size_hand);//!写ppppp
     //sleep(1);
     // //!写真实文件
-
-    int max = 1024*1024;
-
+    int max = 1;
     int sum = 0;        //总传送数
     int xxx = size;
     int size_n;
@@ -53,10 +48,9 @@ int main()
         write(fd, buff, max);
         sum += max;
         xxx -= max;
+        sleep(1);
         //sleep(1);
-        printf("----原始总字符总数[%d]--编码后字符总数[%d]--sum[%d]-----剩余[%d]\n", size,size_n, sum, xxx);
-
-
+        printf("----原始总字符总数[%d]--编码后字符总数[%d]--sum[%d]-----剩余[%d]\n", size, size_n, sum, xxx);
     }
 
     char buff[xxx];
