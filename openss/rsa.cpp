@@ -4,9 +4,12 @@
 #include<string.h>
 #include<openssl/rsa.h>
 #include<openssl/pem.h>
+#include</usr/local/openssl/include/
 #include<iostream>
 #include<stdio.h>
 #include"../cpp-base64/base64.h"
+
+
 
 int main()
 {
