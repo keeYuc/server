@@ -14,5 +14,6 @@ int main()
     std::shared_ptr<a>ptr(new a);
     ptr->name = "sb";
     ptr->age = 52;
+    
     return 0;
 }
