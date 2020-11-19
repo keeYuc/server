@@ -1,5 +1,10 @@
 #!/bin/bash
-ls
-cd ..
-ls
+function abc()
+{
+    local a="fick"
+    a=100
+}
 
+abc
+
+echo $a
