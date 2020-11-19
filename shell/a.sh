@@ -12,4 +12,4 @@ abc
 
 echo $a
 echo $a1
-./n.sh
+source ./n.sh
