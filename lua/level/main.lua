@@ -5,7 +5,7 @@
 -- local tool =require"tool"
 
 local test={name="abc"}
-function test:test(str)
+function test:test(test,str)
     if not str then
         str=self.name
     end
@@ -14,6 +14,9 @@ end
 function aaaa()
     print("aaaa")
 end
-test:test()
+
+
+pcall(aaaa)
+pcall(test.test,test)
 
 
