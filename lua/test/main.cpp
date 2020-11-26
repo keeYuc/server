@@ -8,7 +8,7 @@ int main()
 {
 
     std::cout << fibo(100) << std::endl;
-s
+
 
     return 0;
 }
