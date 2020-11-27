@@ -19,7 +19,6 @@ function base:show(o)
 end
 --*test
 local human = base:new(1,"human")
-
 --*test
 function human:new(name,age)
     local o={}
