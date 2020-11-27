@@ -1,0 +1,1 @@
+shape:printArea(test)

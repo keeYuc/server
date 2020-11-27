@@ -16,8 +16,9 @@ function Shape:new (o,side)
   return o
 end
 -- 基础类方法 printArea
-function Shape:printArea ()
-  print("面积为 ",self.area)
+function Shape:printArea (o)
+    local o = o or self
+  print("面积为 ",o.area)
 end
 
 -- 创建对象
@@ -72,3 +73,7 @@ myrectangle = Rectangle:new(nil,10,20)
 myrectangle:printArea()
 
 
+local test=Rectangle:new(nil,10,30)
+
+-- shape:printArea(test)
+myshape:printArea(test)
