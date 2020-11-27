@@ -1,7 +1,22 @@
 #include<iostream>
 #include<tuple>
 #include<string>
+#include<thread>
+#include<mutex>
 
+
+void print()
+{
+    std::cout << "1" << std::endl;
+}
+int main()
+{
+
+    std::thread t(print);
+    t.join();
+    getchar();
+    return 0;
+}
 // std::tuple<int, double, std::string>fo()
 // {
 //     return std::make_tuple(1, 1.2, "ssss");
@@ -29,14 +44,13 @@
 //     std::cout << t << std::endl;
 //     if constexpr (sizeof...(t1) > 0)print2(t1...);
 // }
-auto add = [](auto x, auto y)
-{
-    return x + y;
-};
-int main()
-{
-    add(1, 2);
-    add(1.1, 2.2);
-}
+// auto add = [](auto x, auto y)->auto
+// {
+//     return x + y;
+// };
+// int main()
+// {
+//     add(10, 11.1);
+// }
 
 
