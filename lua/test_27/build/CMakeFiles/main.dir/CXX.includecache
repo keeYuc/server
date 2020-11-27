@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/keeyu/mycode/server/lua/test_27/main.cpp
+iostream
+-
+mutex
+-
+vector
+-
+thread
+-
+unistd.h
+-
+

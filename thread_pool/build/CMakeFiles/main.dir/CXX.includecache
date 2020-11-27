@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/keeyu/mycode/server/lua/test_new_27/main.cpp
+thread_pool.hpp
+/home/keeyu/mycode/server/lua/test_new_27/thread_pool.hpp
+
+/home/keeyu/mycode/server/lua/test_new_27/thread_pool.hpp
+thread
+-
+mutex
+-
+queue
+-
+

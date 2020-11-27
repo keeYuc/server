@@ -1,0 +1,3 @@
+/home/keeyu/mycode/server/lua/test_new_27/build/CMakeFiles/rebuild_cache.dir
+/home/keeyu/mycode/server/lua/test_new_27/build/CMakeFiles/main.dir
+/home/keeyu/mycode/server/lua/test_new_27/build/CMakeFiles/edit_cache.dir
