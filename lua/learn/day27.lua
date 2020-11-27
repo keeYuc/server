@@ -1,10 +1,47 @@
-
-local ROLE_SUB_MODULE = {
-   roleGM                    = "require role.gm.RoleGM",
-   roleBagObj                = "require role.bag.RoleBag",
-  
-}
-for module_name, module_class in pairs(ROLE_SUB_MODULE) do
-        -- self[module_name] = module_class.new()
-        print(module_name,module_class)
+    local _class={}
+     
+    function class(super)
+    	local class_type={}
+    	class_type.ctor=false
+    	class_type.super=super
+    	class_type.new=function(...)
+    			local obj={}
+    			do
+    				local create
+    				create = function(c,...)
+    					if c.super then
+    						create(c.super,...)
+    					end
+    					if c.ctor then
+    						c.ctor(obj,...)
+    					end
+    				end
+     
+    				create(class_type,...)
+    			end
+    			--obj.super = _class[super]--1
+    			setmetatable(obj,{ __index=_class[class_type] })
+    			return obj
+    		end
+    	local vtbl={}
+            vtbl.super = _class[super]--2
+            _class[class_type]=vtbl
+     
+    	setmetatable(class_type,{__newindex=
+    		function(t,k,v)
+    			vtbl[k]=v
+    		end
+    	})
+     
+    	if super then
+    		setmetatable(vtbl,{__index=
+    			function(t,k)
+    				local ret=_class[super][k]
+    				vtbl[k]=ret
+    				return ret
+    			end
+    		})
+    	end
+     
+    	return class_type
     end

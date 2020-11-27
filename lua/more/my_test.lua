@@ -31,6 +31,10 @@ function human:new(name,age)
 end
 local lixi = human:new("lixi",22)
 local zhan = human:new("zhan",25)
+
+
+
 base:show(human)
 base:show(lixi)
 base:show(zhan)
+zhan.super.show()
