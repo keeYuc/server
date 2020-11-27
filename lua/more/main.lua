@@ -16,7 +16,7 @@ function Shape:new (o,side)
   return o
 end
 -- 基础类方法 printArea
-function Shape:printArea (o)
+function Shape:printArea (o)--!模拟多态  父类方法调用子类属性或者方法
     local o = o or self
   print("面积为 ",o.area)
 end
@@ -73,7 +73,8 @@ myrectangle = Rectangle:new(nil,10,20)
 myrectangle:printArea()
 
 
-local test=Rectangle:new(nil,10,30)
+local test=Rectangle:new(nil,9,30)
 
 -- shape:printArea(test)
 myshape:printArea(test)
+myshape:printArea()
